@@ -1,0 +1,13 @@
+.hotel-card{
+    padding:30px 5px 20px 5px;
+    border-bottom: 1px solid gray;
+    color: black;
+}
+.hotel-card img{
+    width:40%;
+    height: 180px;
+    border-radius: 10%;
+}
+.hotel-card p{
+    line-height:15px;
+}

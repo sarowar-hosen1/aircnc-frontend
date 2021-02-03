@@ -1,0 +1,21 @@
+.MuiFormControl-root.MuiTextField-root.MuiFormControl-marginNormal {
+    margin: 2px 0px;
+}
+
+.destination {}
+
+.destination input {
+    border: none;
+}
+
+.destination input:focus {
+    outline: none;
+}
+
+.destination label {
+    font-weight: bold;
+}
+.destination input[type="number"] {
+    width: 18%;
+    text-align: center;
+}
