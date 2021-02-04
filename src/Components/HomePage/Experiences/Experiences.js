@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import stars from '../../../images/stars.png';
+import ExperiencePreloader from '../../Preloader/ExperiencePreloader';
 import './Experiences.css';
 
 const Experiences = () => {
@@ -27,17 +28,20 @@ const Experiences = () => {
             </div>
             <div className="row">
                 {
-                    experiences.map(experience =>
-                        <div className="col-md-3 col-sm-6 col-6">
-                            <div className='card'>
-                                <img style={{ height: '100px' }} src={experience.picture} alt="" />
-                                <p><small className='text-muted'>{experience.location}</small></p>
-                                <p style={{ fontWeight: 'bold', height:'30px' }}>{experience.name}</p>
-                                <p><small>$ 42 per person</small></p>
-                                <p className='d-flex align-items-center'><img src={stars} alt="" />{experience.review}</p>
+                    experiences.length ?
+                        experiences.map(experience =>
+                            <div className="col-md-3 col-sm-6 col-6">
+                                <div className='card'>
+                                    <img style={{ height: '100px' }} src={experience.picture} alt="" />
+                                    <p><small className='text-muted'>{experience.location}</small></p>
+                                    <p style={{ fontWeight: 'bold', height: '30px' }}>{experience.name}</p>
+                                    <p><small>$ 42 per person</small></p>
+                                    <p className='d-flex align-items-center'><img src={stars} alt="" />{experience.review}</p>
+                                </div>
                             </div>
-                        </div>
-                    )
+                        )
+                        :
+                        <ExperiencePreloader></ExperiencePreloader>
                 }
             </div>
         </div>

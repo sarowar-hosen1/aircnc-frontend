@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import stars from '../../../images/stars.png';
+import HomePreloader from '../../Preloader/HomePreloader';
 import '../Experiences/Experiences.css';
 
 const Homes = () => {
@@ -16,7 +17,7 @@ const Homes = () => {
             .then(res => res.json())
             .then(result => setHomes(result))
     }
-    
+
     return (
         <div className='mt-4'>
             <div className="d-flex justify-content-between">
@@ -25,17 +26,20 @@ const Homes = () => {
             </div>
             <div className="row">
                 {
-                    homes.map(home =>
-                        <div className="col-md-3 col-sm-6 col-6">
-                            <div className='card'>
-                                <img style={{ height: '100px' }} src={home.picture} alt="" />
-                                <p><small className='text-muted'>{home.location}</small></p>
-                                <p style={{ fontWeight: 'bold', height: '30px' }}>{home.name}</p>
-                                <p><small>$ 42 per person</small></p>
-                                <p className='d-flex align-items-center'><img src={stars} alt="" />{home.review}</p>
+                    homes.length ?
+                        homes.map(home =>
+                            <div className="col-md-3 col-sm-6 col-6">
+                                <div className='card'>
+                                    <img style={{ height: '100px' }} src={home.picture} alt="" />
+                                    <p><small className='text-muted'>{home.location}</small></p>
+                                    <p style={{ fontWeight: 'bold', height: '30px' }}>{home.name}</p>
+                                    <p><small>$ 42 per person</small></p>
+                                    <p className='d-flex align-items-center'><img src={stars} alt="" />{home.review}</p>
+                                </div>
                             </div>
-                        </div>
-                    )
+                        )
+                        :
+                        <HomePreloader></HomePreloader>
                 }
             </div>
         </div>
