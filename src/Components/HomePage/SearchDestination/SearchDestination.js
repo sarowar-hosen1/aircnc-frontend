@@ -1,55 +1,53 @@
-import React, { useContext, useState } from 'react';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import React from 'react';
+import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { BsPlus } from 'react-icons/bs';
 import { BiMinus } from 'react-icons/bi';
 import './SearchDestination.css';
 import { useHistory } from 'react-router-dom';
-import { ArrivaleDateContext, CheckoutDateContext, LocationContext,AdultContext,ChildContext } from '../../../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { location, adult, child, arrival, checkout } from '../../../redux/Actions/index'
 
 const SearchDestination = () => {
     const history = useHistory();
-
-    const [location, setLocation] = useContext(LocationContext);
-    const [arrivalDate, setArrivalDate] = useContext(ArrivaleDateContext);
-    const [checkoutDate, setCheckoutDate] = useContext(CheckoutDateContext);
-    const [adults, setAdults] = useContext(AdultContext);
-    const [child, setChild] = useContext(ChildContext);
+    const dispatch = useDispatch();
+    const destination = useSelector(state => state.destination)
+    const arrivalDate = useSelector(state => state.arrivalDate)
+    const checkoutDate = useSelector(state => state.checkoutDate)
+    const adults = useSelector(state => state.adults)
+    const childs = useSelector(state => state.childs);
 
     const handleArrivalDate = (date) => {
-        setArrivalDate(date);
+        dispatch(arrival(date))
     }
     const handleCheckoutDate = (date) => {
-        setCheckoutDate(date);
+        dispatch(checkout(date))
     }
-    const handleLocaton = (e) => {
-        setLocation(e.target.value)
+    const handleLocation = (e) => {
+        dispatch(location(e.target.value))
     }
 
     //handling adult Geust
     const handleAdultPlus = (e) => {
-        setAdults(adults + 1)
+        dispatch(adult(adults + 1))
         e.preventDefault()
     }
     const handleAdultMinus = (e) => {
         if (adults > 1) {
-            setAdults(adults - 1)
+            dispatch(adult(adults - 1))
         }
         e.preventDefault()
     }
 
     //handleLing child geues
     const handleChildPlus = (e) => {
-        setChild(child + 1)
+        dispatch(child(childs + 1))
         e.preventDefault()
     }
 
     const handleChildMinus = (e) => {
-        if (child) {
-            setChild(child - 1)
+        if (childs >= 1) {
+            dispatch(child(childs - 1))
         }
         e.preventDefault()
     }
@@ -59,7 +57,7 @@ const SearchDestination = () => {
             <h5 className="font-weight-bold my-4">Where do you want ot go?</h5>
             <div className="location-div box-shadow">
                 <label htmlFor="">Location</label><br />
-                <input onChange={handleLocaton} type="text" name="destination" className="w-100" required placeholder="Add city, Landmark or Address" />
+                <input onChange={handleLocation} type="text" name="destination" className="w-100" required placeholder="Add city, Landmark or Address" required />
             </div>
             <div className='selected-date'>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -67,7 +65,6 @@ const SearchDestination = () => {
                         <div className="col-md-6">
                             <div className="box-shadow">
                                 <KeyboardDatePicker
-                                    disableToolbar
                                     variant="inline"
                                     format="dd/MM/yyyy"
                                     margin="normal"
@@ -104,7 +101,7 @@ const SearchDestination = () => {
             <div className="select-person box-shadow">
                 <div style={{ borderBottom: '1px solid #e4eeea', marginBottom: '20px' }}>
                     <h6 className="text-muted">Geust</h6>
-                    <h6><span>{adults}</span> Adults, <span>{child}</span> Childs</h6>
+                    <h6><span></span>{adults} Adults, <span></span>{childs} Childs</h6>
                 </div>
                 <form action="">
                     <div className='d-flex justify-content-between'>
@@ -119,7 +116,7 @@ const SearchDestination = () => {
                         <label htmlFor="">Childs</label>
                         <div>
                             <button onClick={handleChildMinus} className='btn btn-none'><BiMinus /></button>
-                            <input type="number" value={child} name="adult" id="" />
+                            <input type="number" value={childs} name="adult" id="" />
                             <button onClick={handleChildPlus} className='btn btn-none'><BsPlus /></button>
                         </div>
                     </div>
@@ -133,7 +130,13 @@ const SearchDestination = () => {
                     </div>
                 </form>
             </div>
-            <button onClick={() => history.push('/search-results')} className={'btn-brand w-100' } >Search</button>
+            {
+                destination ?
+                    <button onClick={() => history.push('/search-results')} className={'btn-brand w-100'} >Search</button>
+                    :
+                    <button onClick={() => history.push('/search-results')} className={'btn btn-secondary w-100'} disabled >Search</button>
+
+            }
         </div>
     );
 };

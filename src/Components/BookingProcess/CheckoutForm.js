@@ -65,7 +65,7 @@ export default function CheckoutForm() {
           {processing ? (
             <div className="spinner" id="spinner"></div>
           ) : (
-            "Pay"
+            "Payment"
           )}
         </span>
       </button>

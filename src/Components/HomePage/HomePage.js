@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../Shared/Navbar/Navbar';
 import HomeMain from './HomeMain/HomeMain';
-
 const HomePage = () => {
     return (
         <>

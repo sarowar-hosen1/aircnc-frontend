@@ -1,18 +1,18 @@
 
-.experience-card .location {
+.home-card .location {
     text-transform: uppercase;
     color: #848484;
     font-family: revert;
     margin-bottom: 2px;
 }
-.experience-card .name {
+.home-card .name {
     font-weight: 600;
     font-family: sans-serif;
     margin-top: 5px;
-    margin-bottom: 2px;
     font-size: 15px;
+    margin-bottom: 2px;
 }
-.experience-card svg {
+.home-card svg {
     color: #288ec9;
 }
 

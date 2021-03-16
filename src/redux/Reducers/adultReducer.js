@@ -1,9 +1,9 @@
-const locationReducer = (state = "", action) => {
+const adultRducer = (state = 2, action) => {
     switch (action.type) {
-        case 'LOCATION':
+        case "ADULT":
             return action.payload
         default:
             return state;
     }
 }
-export default locationReducer
+export default adultRducer;

@@ -3,9 +3,9 @@ import cart from '../../images/cart.png'
 import pets from '../../images/pets.png';
 import forbidden from '../../images/forbidden.png';
 import smoke from '../../images/smoke.png'
-import './HouseRole.css';
+import './BookingProcess.css'
 
-const HoseRole = ({handleNextStep}) => {
+const HoseRole = ({setFirstStep}) => {
     return (
         <div>
             <div className="house-role">
@@ -25,7 +25,7 @@ const HoseRole = ({handleNextStep}) => {
                     <li><img src={forbidden} alt="" />No parties or event</li>
                     <li><img src={smoke} alt="" />Smoke allowed</li>
                 </ul>
-                <button onClick={() => handleNextStep()} className='btn-brand px-5'>Continue & agree</button>
+                <button onClick={() => setFirstStep(false)} className='btn-brand px-5'>Continue & agree</button>
             </div>
         </div>
     );

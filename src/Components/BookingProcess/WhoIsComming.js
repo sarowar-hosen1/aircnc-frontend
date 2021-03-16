@@ -1,7 +1,12 @@
 import React from 'react';
 import user from '../../images/user.jpg';
 
-const WhoIsComming = ({handleSecondStep}) => {
+const WhoIsComming = ({setSecondStep}) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSecondStep(false);
+    }
+
     return (
         <div style={{ marginTop: '50px' }}>
             <h6 className='mb-5'>1. Review house role &#8594; 2. Who is comming &#8594; 3.Confirm & Pay</h6>
@@ -17,9 +22,9 @@ const WhoIsComming = ({handleSecondStep}) => {
                 </div>
             </div>
             <form action="">
-                <textarea name="message" className="form-control" id="" cols="30" rows="5" style={{resize: "none"}}>Hello rodraw!</textarea>
+                <textarea name="message" className="form-control" id="" cols="30" rows="5" style={{resize: "none"}} required >Hello rodraw!</textarea>
                 <br />
-                <input onClick={() => handleSecondStep()} className='btn-brand' type="submit" value="Continue"/>
+                <input onClick={handleSubmit} className='btn-brand' type="submit" value="Continue"/>
             </form>
         </div>
     );

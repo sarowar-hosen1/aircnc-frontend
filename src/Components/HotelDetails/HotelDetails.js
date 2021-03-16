@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Navbar from '../Shared/Navbar/Navbar';
 import { FaHome, FaCheckSquare, FaUserAlt, FaSprayCan } from 'react-icons/fa';
+import Navbar from '../Shared/Navbar/Navbar';
 import user from '../../images/user.jpg';
 import hotel1 from '../../images/hotel1.jpg';
 import hotel2 from '../../images/hotel2.jpeg';
 import ReverseCard from './ReverseCard';
-import { AdultContext, ArrivaleDateContext, CheckoutDateContext } from '../../App';
+import { useSelector } from 'react-redux';
 
 const HotelDetails = () => {
     const [hotelDetails, setHotelDetails] = useState([]);
     const { name, description } = hotelDetails;
+    const arrivalDate = useSelector(state => state.arrivalDate);
+    const checkoutDate = useSelector(state => state.checkoutDate);
+
 
     useEffect(() => {
-        fetch('https://lit-refuge-15352.herokuapp.com/details/60153a56361490296cd32218', {
+        fetch('https://aircnc-hotel.herokuapp.com/details/60153a56361490296cd32218', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,9 +26,6 @@ const HotelDetails = () => {
 
     }, [])
 
-    const [arrivalDate, setArrivalDate] = useContext(ArrivaleDateContext);
-    const [checkoutDate, setCheckoutDate] = useContext(CheckoutDateContext);
-    const [adults, setAdults] = useContext(AdultContext);
 
     return (
 
@@ -52,7 +52,7 @@ const HotelDetails = () => {
                                     </div>
                                 </div>
                                 <p className="text-muted">Dhaka Bangladesh</p>
-                                <p className="text-muted">{adults} Guests, 2 beedroms, 2 beds, 2 baths</p>
+                                <p className="text-muted">Guests, 2 beedroms, 2 beds, 2 baths</p>
                                 <hr />
                             </div>
                             <div className="d-flex mb-2">

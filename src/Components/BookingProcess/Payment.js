@@ -5,9 +5,7 @@ import CheckoutForm from "./CheckoutForm";
 import masterCard from '../../images/bank_master_card.png';
 import visa from '../../images/bank_visa.png';
 import amex from '../../images/bank_amex.png';
-
-
-import './Payment.css';
+import './BookingProcess.css'
 
 const promise = loadStripe("pk_test_51I0rIGAfYxZFqGk2vKYzSl3EG3Nn4X3oBVRj3RJONgawEkiyNCrut1eDdyPwCqsfQ1nUB33pRCQ3DwqSpYWwyn2h00ainEb7xK")
 
@@ -15,19 +13,19 @@ const Payment = () => {
     return (
         <div className="mt-5">
             <h4 className='mb-4'>Payment</h4>
-            <div className='payment box-shadow p-4'>
+            <div className='payment box-shadow p-2'>
                 <div className='d-flex'>
                     <div>
                         <h5>Creadit Card</h5>
                         <p className="text-muted">Safe money transfer with using you bank account</p>
                     </div>
                     <div className='d-flex'>
-                        <img style={{ height: '30px', marginRight: '10px' }} src={masterCard} alt="" />
-                        <img style={{ height: '30px', marginRight: '10px' }} src={amex} alt="" />
-                        <img style={{ height: '30px', marginRight: '10px' }} src={visa} alt="" />
+                        <img style={{ height: '30px', marginRight: '5px' }} src={masterCard} alt="" />
+                        <img style={{ height: '30px', marginRight: '5px' }} src={amex} alt="" />
+                        <img style={{ height: '30px', marginRight: '5px' }} src={visa} alt="" />
                     </div>
                 </div>
-                <div className="d-flex justify-content-center">
+                <div className="">
                     <Elements stripe={promise}>
                         <CheckoutForm />
                     </Elements>

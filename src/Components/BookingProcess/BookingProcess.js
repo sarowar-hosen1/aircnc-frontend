@@ -5,20 +5,20 @@ import Payment from './Payment';
 import WhoIsComming from './WhoIsComming';
 
 const BookingProcess = () => {
-    const [nextStep, setNextStep] = useState(false);
-    const handleNextStep = () => {
-        setNextStep(true)
-    }
- 
+    const [firstSetp, setFirstStep] = useState(true);
+    const [secondStep, setSecondStep] = useState(true)
     return (
         <>
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 col-sm-6 col-12">
-                        <div className={nextStep ? 'd-none' : 'd-block'}>
-                            <HouseRole handleNextStep={handleNextStep} key={55}></HouseRole>
+                        <div className={firstSetp ? "d-block": "d-none"}>
+                            <HouseRole setFirstStep={setFirstStep}></HouseRole>
                         </div>
-                        <div className={nextStep ? 'd-block' : 'd-none'}>
+                        <div className={firstSetp ? "d-none": secondStep ? "d-block" : "d-none"}>
+                            <WhoIsComming setSecondStep={setSecondStep}></WhoIsComming>
+                        </div>
+                        <div className={firstSetp ? "d-none": secondStep ? "d-none": "block"}>
                             <Payment></Payment>
                         </div>
                     </div>
